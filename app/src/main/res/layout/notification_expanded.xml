@@ -33,7 +33,7 @@
         android:maxLines="5"
         android:ellipsize="end"
         android:textColor="@color/black"
-        android:text="Day la thong bao moi den tu ad min, mong moi nguoi\nsad\nasdasd\nsadasdsa"
+        android:text="Day la thong bao moi den tu admin, mong moi nguoi\nsad\nasdasd\nsadasdsa"
         android:fontFamily="@font/montserrat300"
         android:textSize="13sp"
         android:layout_toRightOf="@id/image"

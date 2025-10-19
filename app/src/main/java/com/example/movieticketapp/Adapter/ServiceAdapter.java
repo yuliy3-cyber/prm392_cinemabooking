@@ -29,105 +29,89 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
-    @NonNull
-    @Override
-    public ServiceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView;
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_item, parent, false);
-        return new ServiceAdapter.ViewHolder(itemView);
-    }
-    List<Service> rmdir /s /q .gitservices;
+
+    private List<Service> services;
 
     public ServiceAdapter(List<Service> services) {
         this.services = services;
     }
 
+    @NonNull
+    @Override
+    public ServiceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.service_item, parent, false);
+        return new ServiceAdapter.ViewHolder(itemView);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ServiceAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.name.setText(services.get(position).getName());
-        holder.price.setText(services.get(position).getPrice()+" VNĐ");
-        holder.detail.setText(services.get(position).getDetail());
-        Picasso.get().load(services.get(position).getImage()).fit().centerCrop().into(holder.image);
-        try
-        {
+        Service service = services.get(position);
+        holder.name.setText(service.getName());
+        holder.price.setText(service.getPrice() + " VNĐ");
+        holder.detail.setText(service.getDetail());
+
+        Picasso.get().load(service.getImage()).fit().centerCrop().into(holder.image);
+
+        try {
             Log.d("account type", Users.currentUser.getAccountType());
-            if(Users.currentUser!=null)
-                if((!(Users.currentUser.getAccountType().toString()).equals("admin")))
-                {
-                    holder.serviceMenu.setVisibility(View.INVISIBLE);
-                }
-        }
-        catch (Exception e)
-        {
+            if (Users.currentUser != null && !"admin".equals(Users.currentUser.getAccountType())) {
+                holder.serviceMenu.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
             holder.serviceMenu.setVisibility(View.INVISIBLE);
         }
-        finally {
-            holder.serviceMenu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopupMenu popup = new PopupMenu(v.getContext(), holder.serviceMenu);
-                    //inflating menu from xml resource
-                    popup.inflate(R.menu.promo_menu);
-                    SpannableString edit = new SpannableString("Edit");
-                    edit.setSpan(new ForegroundColorSpan(Color.BLACK), 0, edit.length(), 0);
-                    popup.getMenu().getItem(0).setTitle(edit);
-                    SpannableString delete = new SpannableString("Delete");
-                    delete.setSpan(new ForegroundColorSpan(Color.RED), 0, delete.length(), 0);
-                    popup.getMenu().getItem(1).setTitle(delete);
 
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            int id = item.getItemId();
+        holder.serviceMenu.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(v.getContext(), holder.serviceMenu);
+            popup.inflate(R.menu.promo_menu);
 
-                            if (id == R.id.promo_edit) {
-                                Intent i = new Intent(holder.itemView.getContext(), AddService.class);
-                                i.putExtra("service", services.get(position));
-                                holder.itemView.getContext().startActivity(i);
-                                return true;
+            SpannableString edit = new SpannableString("Edit");
+            edit.setSpan(new ForegroundColorSpan(Color.BLACK), 0, edit.length(), 0);
+            popup.getMenu().getItem(0).setTitle(edit);
 
-                            } else if (id == R.id.promo_delete) {
-                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomAlertDialog);
-                                LayoutInflater factory = LayoutInflater.from(holder.itemView.getContext());
-                                final View deleteDialogView = factory.inflate(R.layout.yes_no_dialog, null);
-                                TextView message = deleteDialogView.findViewById(R.id.message);
-                                message.setText("Do you sure to delete the service ?");
-                                alertDialog.setView(deleteDialogView);
-                                AlertDialog OptionDialog = alertDialog.create();
-                                OptionDialog.show();
+            SpannableString delete = new SpannableString("Delete");
+            delete.setSpan(new ForegroundColorSpan(Color.RED), 0, delete.length(), 0);
+            popup.getMenu().getItem(1).setTitle(delete);
 
-                                TextView Cancel = deleteDialogView.findViewById(R.id.Cancel_Button);
-                                TextView Delete = deleteDialogView.findViewById(R.id.DeleteButton);
+            popup.setOnMenuItemClickListener(item -> {
+                int id = item.getItemId();
 
-                                Delete.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                        CollectionReference ServiceRef = db.collection("Service");
-                                        ServiceRef.document(services.get(position).getID()).delete();
-                                        OptionDialog.dismiss();
-                                    }
-                                });
+                if (id == R.id.promo_edit) {
+                    Intent i = new Intent(holder.itemView.getContext(), AddService.class);
+                    i.putExtra("service", service);
+                    holder.itemView.getContext().startActivity(i);
+                    return true;
 
-                                Cancel.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        OptionDialog.dismiss();
-                                    }
-                                });
+                } else if (id == R.id.promo_delete) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(holder.itemView.getContext(), R.style.CustomAlertDialog);
+                    LayoutInflater factory = LayoutInflater.from(holder.itemView.getContext());
+                    final View deleteDialogView = factory.inflate(R.layout.yes_no_dialog, null);
+                    TextView message = deleteDialogView.findViewById(R.id.message);
+                    message.setText("Do you sure to delete the service ?");
+                    alertDialog.setView(deleteDialogView);
+                    AlertDialog OptionDialog = alertDialog.create();
+                    OptionDialog.show();
 
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        }
+                    TextView Cancel = deleteDialogView.findViewById(R.id.Cancel_Button);
+                    TextView Delete = deleteDialogView.findViewById(R.id.DeleteButton);
+
+                    Delete.setOnClickListener(view -> {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        CollectionReference ServiceRef = db.collection("Service");
+                        ServiceRef.document(service.getID()).delete();
+                        OptionDialog.dismiss();
                     });
 
-                    //displaying the popup
-                    popup.show();
+                    Cancel.setOnClickListener(view -> OptionDialog.dismiss());
+
+                    return true;
+                } else {
+                    return false;
                 }
             });
-        }
+
+            popup.show();
+        });
     }
 
     @Override
@@ -135,17 +119,9 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
         return services.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView detail;
-
-        TextView price;
-
-        TextView name;
-
-        ImageView image;
-
-        ImageView serviceMenu;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView detail, price, name;
+        ImageView image, serviceMenu;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -114,16 +114,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = HomeScreenBinding.inflate(getLayoutInflater());
-        View focusedView = getCurrentFocus();
-        if (focusedView != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+        try {
+            View focusedView = getCurrentFocus();
+            if (focusedView != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error hiding keyboard: ", e);
         }
         setContentView(binding.getRoot());
         String[] listType = {"All", "Horror", "Action", "Drama", "War", "Comedy", "Crime"};
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         accountImage = findViewById(R.id.accountImage);
-        addDiscount = findViewById(R.id.AddDiscount);
         addDiscount = findViewById(R.id.AddDiscount);
         viewAllPlayingBtn = findViewById(R.id.viewAllPlayingBtn);
         viewAllComingBtn = findViewById(R.id.viewAllComingBtn);

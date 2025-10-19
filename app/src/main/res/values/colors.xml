@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="main_color">#FF3D58F8</color>
+    <color name="illustration_2">#FF1E3577</color>
+    <color name="illustration_1">#FF2C4BA1</color>
+    <color name="grey_background_1">#FF42476A</color>
+    <color name="grey_background_2">#FFABADBD</color>
+    <color name="white_background">#FFFFFFFF</color>
+    <color name="dark_background_2">#FF151D3B</color>
+    <color name="dark_background_1">#FF0B0F2F</color>
+    <color name="very_dark_background">#FF051138</color>
+    <color name="login_unable">#FF537DEC</color>
+    <color name="signup_color1">#FF449EEF</color>
+    <color name="hint_color">#99FFFFFF</color>
+    <color name="background_color">#FF0B0F2F</color>
+    <color name="sub_text_color">#FF449EFF</color>
+    <color name="white_opacity_70">#B3FFFFFF</color>
+    <color name="main_information_film_screen">#ff04103A</color>
+    <color name="horizontal_line">#DBDBDB</color>
+    <color name="button_ticket">#FF3E60F9</color>
+    <color name="dialog_background">#FF2C2C2C</color>
+    <color name="AlizarinCrimson">#FFD42121</color>
+    <color name="bg_add_movie">#FF2741EF</color>
+    <color name="cancel_button">#FFC5BCBC</color>
+    <color name="playing">#4D08FC4D</color>
+    <color name="coming">#4DF7FC08</color>
+    <color name="text_input">#CAE4FF</color>
+    <color name="green">#7FFFD4</color>
+    <color name="red">#FF0000</color>
+
+
+<!--    color in chart-->
+    <color name="color1">#ff800000</color>
+    <color name="color2">#ffc0c0c0</color>
+    <color name="color3">#ffff00ff</color>
+    <color name="color4">#ff008000</color>
+    <color name="color5">#ff00ff00</color>
+    <color name="color6">#ffffff00</color>
+    <color name="color7">#ff0000ff</color>
+    <color name="color8">#ff6a5acd</color>
+    <color name="color9">#ffd8bfd8</color>
+    <color name="color10">#ffee82ee</color>
+    <color name="color11">#ff9acd32</color>
+    <color name="color12">#fffff5ee</color>
+    <color name="color13">#ffa0522d</color>
+    <color name="color14">#ff663399</color>
+    <color name="color15">#fff5deb3</color>
+    <color name="color16">#ffffe4c4</color>
+    <color name="color17">#ff000080</color>
+    <color name="color18">#fff5f5dc</color>
+    <color name="color19">#ff808000</color>
+    <color name="color20">#ffFF0000</color>
+
+
+
+</resources>

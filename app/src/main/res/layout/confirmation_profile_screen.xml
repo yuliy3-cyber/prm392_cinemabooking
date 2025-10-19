@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background_1"
+    android:orientation="vertical"
+    tools:context=".Activity.Account.ConfirmationProfileActivity">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/txtConfirmNewAccount"
+        android:layout_width="210dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat600"
+        android:text="Confirm New Account"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/profilePic"
+        app:riv_corner_radius="85dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/default_profile"/>
+
+    <TextView
+        android:id="@+id/txtWelcome"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_below="@id/profilePic"
+        android:layout_marginTop="32dp"
+        android:text="Welcome"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat300"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/txtExampleName"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@id/txtWelcome"
+        android:text="Arya Wijaya"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat500"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
+        android:background="@drawable/roundstyle20"
+        android:backgroundTint="@color/main_color"
+        android:layout_below="@id/txtExampleName"
+        android:layout_marginTop="101dp"
+        android:text="Create My Account"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat500"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>
